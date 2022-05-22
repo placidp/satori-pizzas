@@ -1,7 +1,8 @@
 import React from 'react'
 
-function PizzaBlock({ title, price }) {
+function PizzaBlock({ title, price, imageUrl, sizes, types }) {
   const [pizzaCount, setPizzaCount] = React.useState(0)
+  const pizzaTypes = ['тонкое', 'традиционное']
 
   const onClickAdd = () => {
     setPizzaCount(pizzaCount + 1)
@@ -11,22 +12,19 @@ function PizzaBlock({ title, price }) {
     <div className='pizza-block-wrapper'>
       <div className='pizza-block'>
         <a href='/pizza/8'>
-          <img
-            className='pizza-block__image'
-            src='https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/ec29465e-606b-4a04-a03e-da3940d37e0e.jpg'
-            alt='Pizza'
-          />
+          <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
           <h4 className='pizza-block__title'>{title}</h4>
         </a>
         <div className='pizza-block__selector'>
           <ul>
-            <li className='active'>тонкое</li>
-            <li className=''>традиционное</li>
+            {types.map(type => (
+              <li>{pizzaTypes[type]}</li>
+            ))}
           </ul>
           <ul>
-            <li className='active'>26 см.</li>
-            <li className=''>30 см.</li>
-            <li className=''>40 см.</li>
+            {sizes.map(size => (
+              <li>{size} см.</li>
+            ))}
           </ul>
         </div>
         <div className='pizza-block__bottom'>
