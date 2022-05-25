@@ -3,7 +3,7 @@ import logoSvg from '../assets/img/pizza-logo.svg'
 
 import Search from './Search'
 
-function Header() {
+function Header({ searchField, setSearchField }) {
   return (
     <div className='header'>
       <div className='container'>
@@ -16,7 +16,7 @@ function Header() {
             </div>
           </div>
         </Link>
-        <Search />
+        <Search searchField={searchField} setSearchField={setSearchField} />
         <div className='header__cart'>
           <Link className='button button--cart' to='/cart'>
             <span>0 ₽</span>
