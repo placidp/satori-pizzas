@@ -4,6 +4,7 @@ import Categories from '../components/Categories'
 import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
+import Pagination from '../components/Pagination'
 
 const Home = ({ searchField }) => {
   const [items, setItems] = React.useState([])
@@ -23,7 +24,7 @@ const Home = ({ searchField }) => {
     const searchBy = searchField ? `&search=${searchField}` : ''
 
     fetch(
-      `https://628b53177886bbbb37b5a7c5.mockapi.io/items?${category}&sortBy=${sortBy}&order=${orderBy}${searchBy}`
+      `https://628b53177886bbbb37b5a7c5.mockapi.io/items?page=1&limit=4&${category}&sortBy=${sortBy}&order=${orderBy}${searchBy}`
     )
       .then(res => res.json())
       .then(arr => {
@@ -44,6 +45,7 @@ const Home = ({ searchField }) => {
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       <div className='content__items'>{isLoading ? skeleton : pizzas}</div>
+      <Pagination />
     </div>
   )
 }

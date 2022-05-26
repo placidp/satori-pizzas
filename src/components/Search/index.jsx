@@ -10,7 +10,7 @@ const Search = ({ searchField, setSearchField }) => {
     <div className={styles.root}>
       <svg
         className={styles.icon}
-        enable-background='new 0 0 32 32'
+        enableBackground='new 0 0 32 32'
         id='EditableLine'
         version='1.1'
         viewBox='0 0 32 32'
@@ -25,7 +25,7 @@ const Search = ({ searchField, setSearchField }) => {
           stroke='#000000'
           strokeLinecap='round'
           strokeLinejoin='round'
-          stroke-miterlimit='10'
+          strokeMiterlimit='10'
           strokeWidth='2'
         ></circle>
         <line
@@ -34,7 +34,7 @@ const Search = ({ searchField, setSearchField }) => {
           stroke='#000000'
           strokeLinecap='round'
           strokeLinejoin='round'
-          stroke-miterlimit='10'
+          strokeMiterlimit='10'
           strokeWidth='2'
           x1='27'
           x2='20.366'
