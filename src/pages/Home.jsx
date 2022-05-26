@@ -10,6 +10,7 @@ const Home = ({ searchField }) => {
   const [items, setItems] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
   const [categoryId, setCategoryId] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1)
   const [sortType, setSortType] = React.useState({
     name: 'популярности',
     sortProp: 'rating',
@@ -24,7 +25,7 @@ const Home = ({ searchField }) => {
     const searchBy = searchField ? `&search=${searchField}` : ''
 
     fetch(
-      `https://628b53177886bbbb37b5a7c5.mockapi.io/items?page=1&limit=4&${category}&sortBy=${sortBy}&order=${orderBy}${searchBy}`
+      `https://628b53177886bbbb37b5a7c5.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orderBy}${searchBy}`
     )
       .then(res => res.json())
       .then(arr => {
@@ -32,7 +33,7 @@ const Home = ({ searchField }) => {
         setIsLoading(false)
       })
     window.scrollTo(0, 0)
-  }, [categoryId, sortType, searchField])
+  }, [categoryId, sortType, searchField, currentPage])
 
   const pizzas = items.map(item => <PizzaBlock key={item.id} {...item} />)
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
@@ -45,7 +46,7 @@ const Home = ({ searchField }) => {
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       <div className='content__items'>{isLoading ? skeleton : pizzas}</div>
-      <Pagination />
+      <Pagination onChangePage={number => setCurrentPage(number)} />
     </div>
   )
 }
