@@ -1,10 +1,10 @@
 import React from 'react'
+import { SearchContext } from '../../App'
 
 import styles from './Search.module.scss'
 
-const Search = ({ searchField, setSearchField }) => {
-  // const [pizzas, setPizzas] = React.useState()
-  // const [filteredItems, setFilteredItems] = React.useState()
+const Search = () => {
+  const { searchField, setSearchField } = React.useContext(SearchContext)
 
   return (
     <div className={styles.root}>

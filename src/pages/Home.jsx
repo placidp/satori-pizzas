@@ -1,4 +1,5 @@
 import React from 'react'
+import { SearchContext } from '../App'
 
 import Categories from '../components/Categories'
 import Sort from '../components/Sort'
@@ -6,7 +7,7 @@ import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
 
-const Home = ({ searchField }) => {
+const Home = () => {
   const [items, setItems] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
   const [categoryId, setCategoryId] = React.useState(0)
@@ -15,6 +16,8 @@ const Home = ({ searchField }) => {
     name: 'популярности',
     sortProp: 'rating',
   })
+
+  const { searchField } = React.useContext(SearchContext)
 
   React.useEffect(() => {
     setIsLoading(true)
