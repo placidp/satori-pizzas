@@ -1,5 +1,7 @@
 import React from 'react'
+import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
+
 import { setCategoryId } from '../redux/slices/filterSlice'
 
 import Categories from '../components/Categories'
@@ -31,14 +33,15 @@ const Home = () => {
     const orderBy = sort.sortProperty.includes('-') ? 'asc' : 'desc'
     const searchBy = searchField ? `&search=${searchField}` : ''
 
-    fetch(
-      `https://628b53177886bbbb37b5a7c5.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orderBy}${searchBy}`
-    )
-      .then(res => res.json())
-      .then(arr => {
-        setItems(arr)
+    axios
+      .get(
+        `https://628b53177886bbbb37b5a7c5.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orderBy}${searchBy}`
+      )
+      .then(res => {
+        setItems(res.data)
         setIsLoading(false)
       })
+
     window.scrollTo(0, 0)
   }, [categoryId, sort.sortProperty, searchField, currentPage])
 
