@@ -19,6 +19,9 @@ import { list } from '../components/Sort'
 const Home = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const isSearch = React.useRef(false)
+  const isMounted = React.useRef(false)
+
   const { categoryId, sort, currentPage } = useSelector(state => state.filter)
 
   const [items, setItems] = React.useState([])
@@ -34,22 +37,7 @@ const Home = () => {
     dispatch(setCurrentPage(number))
   }
 
-  React.useEffect(() => {
-    if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1))
-
-      const sort = list.find(obj => obj.sortProperty === params.sortProperty)
-
-      dispatch(
-        setFilters({
-          ...params,
-          sort,
-        })
-      )
-    }
-  }, [])
-
-  React.useEffect(() => {
+  const fetchPizzas = () => {
     setIsLoading(true)
 
     const category = categoryId > 0 ? `category=${categoryId}` : ''
@@ -65,19 +53,49 @@ const Home = () => {
         setItems(res.data)
         setIsLoading(false)
       })
+  }
 
-    window.scrollTo(0, 0)
-  }, [categoryId, sort.sortProperty, searchField, currentPage])
-
+  // if we changed params and there was first render
   React.useEffect(() => {
-    const queryString = qs.stringify({
-      sortProperty: sort.sortProperty,
-      categoryId,
-      currentPage,
-    })
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      })
 
-    navigate(`?${queryString}`)
+      navigate(`?${queryString}`)
+    }
+    isMounted.current = true
   }, [categoryId, sort.sortProperty, currentPage])
+
+  // if first render => checking url params and saving them in redux
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1))
+
+      const sort = list.find(obj => obj.sortProperty === params.sortProperty)
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        })
+      )
+      isSearch.current = true
+    }
+  }, [])
+
+  // if there was first render => requesting pizzas
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+
+    if (!isSearch.current) {
+      fetchPizzas()
+    }
+
+    isSearch.current = false
+  }, [categoryId, sort.sortProperty, searchField, currentPage])
 
   const pizzas = items.map(item => <PizzaBlock key={item.id} {...item} />)
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
