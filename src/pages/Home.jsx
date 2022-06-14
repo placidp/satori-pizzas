@@ -4,8 +4,13 @@ import { useNavigate } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
-import { fetchPizzas } from '../redux/slices/pizzaSlice'
+import {
+  selectFilter,
+  setCategoryId,
+  setCurrentPage,
+  setFilters,
+} from '../redux/slices/filterSlice'
+import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice'
 
 import Categories from '../components/Categories'
 import Sort from '../components/Sort'
@@ -22,8 +27,8 @@ const Home = () => {
   const isMounted = React.useRef(false)
   const isSearch = React.useRef(false)
 
-  const { items, status } = useSelector(state => state.pizza)
-  const { categoryId, sort, currentPage } = useSelector(state => state.filter)
+  const { items, status } = useSelector(selectPizzaData)
+  const { categoryId, sort, currentPage } = useSelector(selectFilter)
   const { searchField } = React.useContext(SearchContext)
 
   const onChangeCategory = i => {
