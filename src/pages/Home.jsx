@@ -17,7 +17,6 @@ import Sort from '../components/Sort'
 import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
-import { SearchContext } from '../App'
 
 import { list } from '../components/Sort'
 
@@ -28,8 +27,7 @@ const Home = () => {
   const isSearch = React.useRef(false)
 
   const { items, status } = useSelector(selectPizzaData)
-  const { categoryId, sort, currentPage } = useSelector(selectFilter)
-  const { searchField } = React.useContext(SearchContext)
+  const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter)
 
   const onChangeCategory = i => {
     dispatch(setCategoryId(i))
@@ -43,7 +41,7 @@ const Home = () => {
     const sortBy = sort.sortProperty.replace('-', '')
     const orderBy = sort.sortProperty.includes('-') ? 'asc' : 'desc'
     const category = categoryId > 0 ? `category=${categoryId}` : ''
-    const searchBy = searchField ? `&search=${searchField}` : ''
+    const searchBy = searchValue ? `&search=${searchValue}` : ''
 
     dispatch(
       fetchPizzas({
@@ -68,7 +66,7 @@ const Home = () => {
       navigate(`?${queryString}`)
     }
     isMounted.current = true
-  }, [categoryId, sort.sortProperty, searchField, currentPage])
+  }, [categoryId, sort.sortProperty, searchValue, currentPage])
 
   // if first render => checking url params and saving them in redux
   React.useEffect(() => {
@@ -95,7 +93,7 @@ const Home = () => {
     }
 
     isSearch.current = false
-  }, [categoryId, sort.sortProperty, searchField, currentPage])
+  }, [categoryId, sort.sortProperty, searchValue, currentPage])
 
   const pizzas = items.map(item => <PizzaBlock key={item.id} {...item} />)
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
