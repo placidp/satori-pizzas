@@ -18,9 +18,9 @@ import PizzaBlock from '../components/PizzaBlock'
 import Skeleton from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
 
-import { list } from '../components/Sort'
+import { sortList } from '../components/Sort'
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const isMounted = React.useRef(false)
@@ -29,12 +29,12 @@ const Home = () => {
   const { items, status } = useSelector(selectPizzaData)
   const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter)
 
-  const onChangeCategory = i => {
-    dispatch(setCategoryId(i))
+  const onChangeCategory = (idx: number) => {
+    dispatch(setCategoryId(idx))
   }
 
-  const onPageChange = number => {
-    dispatch(setCurrentPage(number))
+  const onPageChange = (page: number) => {
+    dispatch(setCurrentPage(page))
   }
 
   const getPizzas = async () => {
@@ -44,6 +44,7 @@ const Home = () => {
     const searchBy = searchValue ? `&search=${searchValue}` : ''
 
     dispatch(
+      // @ts-ignore
       fetchPizzas({
         sortBy,
         orderBy,
@@ -72,7 +73,7 @@ const Home = () => {
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1))
-      const sort = list.find(obj => obj.sortProperty === params.sortProperty)
+      const sort = sortList.find(obj => obj.sortProperty === params.sortProperty)
 
       dispatch(
         setFilters({
@@ -95,7 +96,7 @@ const Home = () => {
     isSearch.current = false
   }, [categoryId, sort.sortProperty, searchValue, currentPage])
 
-  const pizzas = items.map(item => (
+  const pizzas = items.map((item: any) => (
     <Link key={item.id} to={`/pizza/${item.id}`}>
       <PizzaBlock {...item} />
     </Link>
