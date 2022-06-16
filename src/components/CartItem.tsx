@@ -28,12 +28,6 @@ const CartItem: React.FC<CartItemProps> = ({ id, name, type, size, price, count,
     dispatch(minusItem(id))
   }
 
-  // const onClickRemove = () => {
-  //   if (window.confirm('Ты действительно хочешь удалить товар?')) {
-  //     dispatch(removeItem(id))
-  //   }
-  // }
-
   const onClickRemove = () => {
     dispatch(removeItem(id))
   }
