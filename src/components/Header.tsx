@@ -2,13 +2,13 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logoSvg from '../assets/img/pizza-logo.svg'
 
-import Search from './Search'
+import { Search } from './'
 
 import { useSelector } from 'react-redux'
 
 import { selectCart } from '../redux/cart/selectors'
 
-function Header() {
+export const Header: React.FC = () => {
   const { items, totalPrice } = useSelector(selectCart)
   const location = useLocation()
   const isMounted = React.useRef(false)
@@ -78,5 +78,3 @@ function Header() {
     </div>
   )
 }
-
-export default Header

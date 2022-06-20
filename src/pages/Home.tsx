@@ -8,11 +8,7 @@ import { useAppDispatch } from '../redux/store'
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/filter/slice'
 import { SearchPizzaParams } from '../redux/pizza/slice'
 
-import Categories from '../components/Categories'
-import Sort from '../components/Sort'
-import PizzaBlock from '../components/PizzaBlock'
-import Skeleton from '../components/PizzaBlock/Skeleton'
-import Pagination from '../components/Pagination'
+import { Categories, Sort, Pagination, Skeleton, PizzaBlock } from '../components'
 
 import { sortList } from '../components/Sort'
 import { selectPizzaData } from '../redux/pizza/selectors'
@@ -123,4 +119,5 @@ const Home: React.FC = () => {
     </div>
   )
 }
+
 export default Home
