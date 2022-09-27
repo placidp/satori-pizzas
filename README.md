@@ -8,4 +8,6 @@ https://react-pizza-gepiko.vercel.app/
 - [ ] total not decreasing
 - [ ] fix skeleton ui
 - [ ] add caching pizzas
-- [ ] server-side rendering
+- [ ] add sort icons
+- [ ] add page for single pizza
+- [ ] clean up comments
