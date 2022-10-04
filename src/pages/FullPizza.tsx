@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 const FullPizza: React.FC = () => {
@@ -11,7 +11,7 @@ const FullPizza: React.FC = () => {
   const params = useParams()
   const navigate = useNavigate()
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchPizza() {
       try {
         const { data } = await axios.get(
