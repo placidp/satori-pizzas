@@ -1,30 +1,22 @@
-import React from 'react'
-import qs from 'qs'
-import { useNavigate } from 'react-router-dom'
+import { FC, useCallback, useEffect, useRef } from 'react'
 
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from '../redux/store'
-
-import { setCategoryId, setCurrentPage, setFilters } from '../redux/filter/slice'
-import { SearchPizzaParams } from '../redux/pizza/slice'
-
-import { Categories, Sort, Pagination, Skeleton, PizzaBlock } from '../components'
-
-import { sortList } from '../components/Sort'
+import { setCategoryId, setCurrentPage } from '../redux/filter/slice'
 import { selectPizzaData } from '../redux/pizza/selectors'
 import { selectFilter } from '../redux/filter/selectors'
 import { fetchPizzas } from '../redux/pizza/asyncActions'
 
-const Home: React.FC = () => {
-  const navigate = useNavigate()
+import { Categories, Sort, Pagination, Skeleton, PizzaBlock } from '../components'
+
+const Home: FC = () => {
   const dispatch = useAppDispatch()
-  const isMounted = React.useRef(false)
-  const isSearch = React.useRef(false)
+  const isSearch = useRef(false)
 
   const { items, status } = useSelector(selectPizzaData)
   const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter)
 
-  const onChangeCategory = React.useCallback((idx: number) => {
+  const onChangeCategory = useCallback((idx: number) => {
     dispatch(setCategoryId(idx))
   }, [])
 
@@ -50,7 +42,7 @@ const Home: React.FC = () => {
   }
 
   // if there was first render => requesting pizzas
-  React.useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0)
 
     if (!isSearch.current) {

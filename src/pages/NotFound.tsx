@@ -1,6 +1,6 @@
-import React from 'react'
+import { FC } from 'react'
 import { NotFoundBlock } from '../components'
 
-const NotFound: React.FC = () => <NotFoundBlock />
+const NotFound: FC = () => <NotFoundBlock />
 
 export default NotFound

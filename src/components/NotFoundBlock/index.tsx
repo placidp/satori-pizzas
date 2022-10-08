@@ -1,8 +1,8 @@
-import React from 'react'
+import { FC } from 'react'
 
 import styles from './NotFoundBlock.module.scss'
 
-export const NotFoundBlock: React.FC = () => {
+export const NotFoundBlock: FC = () => {
   return (
     <div className={styles.root}>
       <span>☹️</span>
