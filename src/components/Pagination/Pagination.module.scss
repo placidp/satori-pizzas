@@ -1,4 +1,8 @@
+@import '../../scss/variables';
+
 .root {
+  margin-top: 15px;
+
   li {
     display: inline-block;
 
@@ -20,6 +24,7 @@
       user-select: none;
       display: inline-block;
       color: #fe5f1e;
+      transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
 
       &:hover {
         background-color: #fe5f1e;

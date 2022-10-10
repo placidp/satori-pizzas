@@ -3,11 +3,19 @@
 .pizza-block {
   width: 280px;
   text-align: center;
-  margin-bottom: 65px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 
   &-wrapper {
     display: flex;
     justify-content: center;
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      box-shadow: 1px 0px 15px 0px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
+    }
   }
 
   &__image {

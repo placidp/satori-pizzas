@@ -5,6 +5,7 @@
   &__label {
     display: flex;
     align-items: center;
+    user-select: none;
 
     svg {
       margin-right: 8px;
