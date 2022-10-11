@@ -10,4 +10,5 @@ https://react-pizza-gepiko.vercel.app/
 - [ ] add caching pizzas
 - [ ] add sort icons
 - [ ] add page for single pizza
+- [x] pizza card css fix
 - [ ] clean up comments
