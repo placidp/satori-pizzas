@@ -2,11 +2,11 @@ import ContentLoader from 'react-content-loader'
 
 export const Skeleton = () => (
   <ContentLoader
-    className='pizza-block'
+    className='pizza-block-wrapper'
     speed={2}
     width={280}
-    height={500}
-    viewBox='0 0 280 500'
+    height={520}
+    viewBox='0 0 280 520'
     backgroundColor='#f3f3f3'
     foregroundColor='#ecebeb'
     style={{ width: '100%' }}

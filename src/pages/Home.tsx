@@ -53,7 +53,7 @@ const Home: FC = () => {
   }, [categoryId, sort.sortProperty, searchValue, currentPage])
 
   const pizzas = items.map((item: any) => <PizzaBlock key={item.id} {...item} />)
-  const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+  const skeleton = [...new Array(4)].map((_, index) => <Skeleton key={index} />)
 
   return (
     <div className='container'>
