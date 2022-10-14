@@ -423,3 +423,25 @@ body {
     }
   }
 }
+
+// scrollbar
+
+::-webkit-scrollbar {
+  width: 16px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  // background: #ffdbc4;
+  border-radius: 100vw;
+  margin-block: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fe5f1e;
+  border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e5541b;
+}
