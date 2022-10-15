@@ -42,13 +42,14 @@
       letter-spacing: 1%;
       text-transform: uppercase;
       font-weight: 800;
+      text-align: center;
     }
 
     p {
       color: #7b7b7b;
     }
 
-    @media (max-width: 645px) {
+    @media (max-width: 650px) {
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -63,7 +64,7 @@
     }
   }
 
-  @media (max-width: 645px) {
+  @media (max-width: 650px) {
     &__logo > div {
       text-align: center;
     }
