@@ -5,7 +5,7 @@
   &__label {
     display: flex;
     align-items: center;
-    user-select: none;
+    @include noselect();
 
     svg {
       margin-right: 8px;
@@ -13,12 +13,13 @@
 
     b {
       margin-right: 8px;
+      min-width: 121px;
     }
 
     span {
       color: $orange;
-      border-bottom: 1px dashed $orange;
       cursor: pointer;
+      min-width: 125px;
     }
   }
 
@@ -31,8 +32,8 @@
     border-radius: 10px;
     overflow: hidden;
     padding: 10px 0;
-    // width: 300px;
     width: max-content;
+    z-index: 1;
 
     ul {
       overflow: hidden;
