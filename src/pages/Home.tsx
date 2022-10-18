@@ -18,6 +18,7 @@ const Home: FC = () => {
 
   const onChangeCategory = useCallback((idx: number) => {
     dispatch(setCategoryId(idx))
+    dispatch(setCurrentPage(1))
   }, [])
 
   const onPageChange = (page: number) => {
