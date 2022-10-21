@@ -39,7 +39,7 @@ export const Sort: FC<SortProps> = memo(({ value }) => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const _event = event as PopupClick
-      if (sortRef.current && !_event.path.includes(sortRef.current)) {
+      if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
         setIsOpen(false)
       }
     }
@@ -52,9 +52,9 @@ export const Sort: FC<SortProps> = memo(({ value }) => {
   return (
     <div ref={sortRef} className='sort'>
       <div className='sort__label'>
-        {/* 
-                                                I will do toggle sort logic later
-        <svg
+        {/* I will do toggle sort logic later */}
+
+        {/* <svg
           width='10'
           height='6'
           viewBox='0 0 10 6'
