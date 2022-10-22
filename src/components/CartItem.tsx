@@ -7,7 +7,7 @@ import { CartItem as CartItemType } from '../redux/cart/types'
 type CartItemProps = {
   id: string
   name: string
-  type: number
+  type: string
   size: number
   price: number
   count: number
@@ -17,12 +17,13 @@ type CartItemProps = {
 export const CartItem: FC<CartItemProps> = ({ id, name, type, size, price, count, imageUrl }) => {
   const dispatch = useDispatch()
 
+  // ! broken
   const onClickPlus = () => {
-    dispatch(
-      addItem({
-        id,
-      } as CartItemType)
-    )
+    // dispatch(
+    //   addItem({
+    //     id,
+    //   } as CartItemType)
+    // )
   }
 
   const onClickMinus = () => {
