@@ -26,7 +26,7 @@ export const CartItem: FC<CartItemProps> = ({ id, name, type, size, price, count
   }
 
   const onClickRemove = () => {
-    dispatch(removeItem(id))
+    dispatch(removeItem({ id, size, type } as CartItemType))
   }
 
   return (
