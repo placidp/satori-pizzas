@@ -100,7 +100,7 @@ const Cart: FC = () => {
         </div>
 
         {items.map((item: any) => (
-          <CartItem key={item.id} {...item} />
+          <CartItem key={item.id + item.type + item.size} {...item} />
         ))}
 
         <div className='cart__bottom'>
