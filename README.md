@@ -5,7 +5,7 @@ https://react-pizza-gepiko.vercel.app/
 
 
 - [ ] pizza types change price
-- [ ] pizza types won't pass to redux & cart
+- [x] pizza types won't pass to redux & cart
 - [x] total not decreasing
 - [x] fix skeleton ui
 - [ ] add caching pizzas
