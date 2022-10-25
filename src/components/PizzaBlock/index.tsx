@@ -28,11 +28,24 @@ export const PizzaBlock: FC<PizzaBlockProps> = ({ id, name, price, imageUrl, siz
 
   const addedCount = cartItem ? cartItem.count : 0
 
+  // mock different prices based on pizza's sizes
+  const coefficientMid = 1.2
+  const coefficientHigh = 1.3
+  let finalPrice: number
+
+  if (sizes[activeSize] === sizes[1]) {
+    finalPrice = Math.floor(price + sizes[activeSize] * coefficientMid)
+  } else if (sizes[activeSize] === sizes[2]) {
+    finalPrice = Math.floor(price + sizes[activeSize] * coefficientHigh)
+  } else {
+    finalPrice = price
+  }
+
   const onClickAdd = () => {
     const item: CartItem = {
       id,
       name,
-      price,
+      price: finalPrice,
       imageUrl,
       type: pizzaTypes[activeType],
       size: sizes[activeSize],
@@ -73,7 +86,7 @@ export const PizzaBlock: FC<PizzaBlockProps> = ({ id, name, price, imageUrl, siz
           </ul>
         </div>
         <div className='pizza-block__bottom'>
-          <div className='pizza-block__price'>от {price} ₽</div>
+          <div className='pizza-block__price'>от {finalPrice} ₽</div>
           <button onClick={onClickAdd} className='button button--outline button--add'>
             <svg
               width='12'
