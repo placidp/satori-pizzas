@@ -1,8 +1,8 @@
 export enum SortPropertyEnum {
   RATING_DESC = 'rating',
   RATING_ASC = '-rating',
-  TITLE_DESC = 'title',
-  TITLE_ASC = '-title',
+  TITLE_DESC = 'name',
+  TITLE_ASC = '-name',
   PRICE_DESC = 'price',
   PRICE_ASC = '-price',
 }
