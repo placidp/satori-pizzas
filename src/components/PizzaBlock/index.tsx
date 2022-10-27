@@ -5,20 +5,25 @@ import { selectCartItemByIdTypeSize } from '../../redux/cart/selectors'
 
 import { addItem } from '../../redux/cart/slice'
 import { CartItem } from '../../redux/cart/types'
+import { PizzaSizes } from '../../redux/pizza/types'
 
 const pizzaTypes = ['тонкое', 'традиционное']
 
 type PizzaBlockProps = {
   id: string
   name: string
-  price: number
+  prices: {
+    small: number
+    medium: number
+    large: number
+  }
   imageUrl: string
   sizes: number[]
   types: number[]
   rating: number
 }
 
-export const PizzaBlock: FC<PizzaBlockProps> = ({ id, name, price, imageUrl, sizes, types }) => {
+export const PizzaBlock: FC<PizzaBlockProps> = ({ id, name, prices, imageUrl, sizes, types }) => {
   const [activeType, setActiveType] = useState(0)
   const [activeSize, setActiveSize] = useState(0)
   const dispatch = useDispatch()
@@ -28,24 +33,22 @@ export const PizzaBlock: FC<PizzaBlockProps> = ({ id, name, price, imageUrl, siz
 
   const addedCount = cartItem ? cartItem.count : 0
 
-  // mock different prices based on pizza's sizes
-  const coefficientMid = 1.2
-  const coefficientHigh = 1.3
-  let finalPrice: number
+  // pizza types change price
+  let price: number = prices.small
 
-  if (sizes[activeSize] === sizes[1]) {
-    finalPrice = Math.floor(price + sizes[activeSize] * coefficientMid)
-  } else if (sizes[activeSize] === sizes[2]) {
-    finalPrice = Math.floor(price + sizes[activeSize] * coefficientHigh)
-  } else {
-    finalPrice = price
+  if (prices.medium && sizes[activeSize] === PizzaSizes.MEDIUM) {
+    price = prices.medium
+  } else if (prices.large && sizes[activeSize] === PizzaSizes.LARGE) {
+    price = prices.large
+  } else if (prices.small) {
+    price = prices.small
   }
 
   const onClickAdd = () => {
     const item: CartItem = {
       id,
       name,
-      price: finalPrice,
+      price,
       imageUrl,
       type: pizzaTypes[activeType],
       size: sizes[activeSize],
@@ -86,7 +89,8 @@ export const PizzaBlock: FC<PizzaBlockProps> = ({ id, name, price, imageUrl, siz
           </ul>
         </div>
         <div className='pizza-block__bottom'>
-          <div className='pizza-block__price'>от {finalPrice} ₽</div>
+          {/* <div className='pizza-block__price'>от {prices.small || prices.medium} ₽</div> */}
+          <div className='pizza-block__price'>от {price} ₽</div>
           <button onClick={onClickAdd} className='button button--outline button--add'>
             <svg
               width='12'
