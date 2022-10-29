@@ -21,8 +21,8 @@ export const sortList: SortItem[] = [
   { name: '▲ популярности', sortProperty: SortPropertyEnum.RATING_ASC },
   { name: '▼ цене', sortProperty: SortPropertyEnum.PRICE_DESC },
   { name: '▲ цене', sortProperty: SortPropertyEnum.PRICE_ASC },
-  { name: '▼ алфавиту', sortProperty: SortPropertyEnum.TITLE_DESC },
-  { name: '▲ алфавиту', sortProperty: SortPropertyEnum.TITLE_ASC },
+  { name: '▼ алфавиту', sortProperty: SortPropertyEnum.NAME_DESC },
+  { name: '▲ алфавиту', sortProperty: SortPropertyEnum.NAME_ASC },
 ]
 
 export const Sort: FC<SortProps> = memo(({ value }) => {

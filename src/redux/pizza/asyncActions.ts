@@ -11,11 +11,6 @@ export const fetchPizzas = createAsyncThunk<Pizza[], SearchPizzaParams>(
       `https://628b53177886bbbb37b5a7c5.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${orderBy}${searchBy}`
     )
 
-    // if (data.length === 0) {
-    //   return thunkAPI.rejectWithValue('Пиццы пустые')
-    // }
-
-    // return thunkAPI.fulfillWithValue(data)
     return data
   }
 )
