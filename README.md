@@ -14,4 +14,4 @@ https://react-pizza-gepiko.vercel.app/
 - [x] pizza card css fix
 - [ ] clean up comments
 - [ ] fix static page count
-- [ ] add suspense fallback skeleton
+- [ ] add suspense fallback skeleton / loader
