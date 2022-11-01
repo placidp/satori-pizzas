@@ -15,3 +15,4 @@ https://react-pizza-gepiko.vercel.app/
 - [ ] clean up comments
 - [ ] fix static page count
 - [ ] add suspense fallback skeleton / loader
+- [ ] fix search component's css
