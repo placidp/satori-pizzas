@@ -47,7 +47,6 @@ export const Sort: FC<SortProps> = memo(({ value }) => {
 
     return () => document.body.removeEventListener('click', handleClickOutside)
   }, [])
-
   return (
     <div ref={sortRef} className='sort'>
       <div className='sort__label'>
@@ -75,7 +74,7 @@ export const Sort: FC<SortProps> = memo(({ value }) => {
               <li
                 key={i}
                 onClick={() => onClickSortItem(obj)}
-                className={value.sortProperty === obj.sortProperty ? 'active' : ''}
+                className={value.name === obj.name ? 'active' : ''}
               >
                 {obj.name}
               </li>
