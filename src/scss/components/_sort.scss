@@ -9,6 +9,8 @@
     justify-content: space-between;
     @include noselect();
 
+    cursor: pointer;
+
     svg {
       margin-right: 5px;
       margin-left: 8px;
@@ -25,7 +27,6 @@
 
     span {
       color: $orange;
-      cursor: pointer;
       // min-width: 125px;
       text-align: center;
     }

@@ -25,11 +25,12 @@ export const sortList: SortItem[] = [
 
 export const Sort: FC<SortProps> = memo(({ value }) => {
   const dispatch = useDispatch()
-  const sortRef = useRef<HTMLDivElement>(null)
+  const sortRef = useRef<HTMLSpanElement>(null)
 
   const [isOpen, setIsOpen] = useState(false)
 
   const { toggleSortIcon } = useToggleSort()
+
   const onClickSortItem = (obj: SortItem) => {
     dispatch(setSortType(obj))
     setIsOpen(false)
@@ -48,7 +49,7 @@ export const Sort: FC<SortProps> = memo(({ value }) => {
     return () => document.body.removeEventListener('click', handleClickOutside)
   }, [])
   return (
-    <div ref={sortRef} className='sort'>
+    <div className='sort'>
       <div className='sort__label'>
         <b>Сортировка по:</b>
         <svg
@@ -65,7 +66,9 @@ export const Sort: FC<SortProps> = memo(({ value }) => {
             fill='#2C2C2C'
           ></path>
         </svg>
-        <span onClick={() => setIsOpen(!isOpen)}>{value.name}</span>
+        <span ref={sortRef} onClick={() => setIsOpen(!isOpen)}>
+          {value.name}
+        </span>
       </div>
       {isOpen && (
         <div className='sort__popup'>
