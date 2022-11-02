@@ -24,6 +24,9 @@ const filterSlice = createSlice({
     setSortType(state, action: PayloadAction<Sort>) {
       state.sort = action.payload
     },
+    setSortTypeToggle(state, action: PayloadAction<SortPropertyEnum>) {
+      state.sort.sortProperty = action.payload
+    },
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload
     },
@@ -44,7 +47,13 @@ const filterSlice = createSlice({
   },
 })
 
-export const { setCategoryId, setSearchValue, setSortType, setCurrentPage, setFilters } =
-  filterSlice.actions
+export const {
+  setCategoryId,
+  setSearchValue,
+  setSortType,
+  setSortTypeToggle,
+  setCurrentPage,
+  setFilters,
+} = filterSlice.actions
 
 export default filterSlice.reducer

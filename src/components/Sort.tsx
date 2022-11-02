@@ -24,12 +24,12 @@ export const sortList: SortItem[] = [
 ]
 
 export const Sort: FC<SortProps> = memo(({ value }) => {
-  const { sorted, toggleSortIcon } = useToggleSort()
   const dispatch = useDispatch()
   const sortRef = useRef<HTMLDivElement>(null)
 
   const [isOpen, setIsOpen] = useState(false)
 
+  const { toggleSortIcon } = useToggleSort()
   const onClickSortItem = (obj: SortItem) => {
     dispatch(setSortType(obj))
     setIsOpen(false)
@@ -52,8 +52,8 @@ export const Sort: FC<SortProps> = memo(({ value }) => {
       <div className='sort__label'>
         <b>Сортировка по:</b>
         <svg
-          onClick={() => toggleSortIcon()}
-          className={sorted.reversed ? 'reversed' : ''}
+          onClick={() => toggleSortIcon(value.sortProperty)}
+          className={!value.sortProperty.includes('-') ? 'reversed' : ''}
           width='15'
           height='9'
           viewBox='0 0 10 6'
