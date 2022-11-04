@@ -12,19 +12,16 @@ export type Pizza = {
   rating: number
 }
 
-export enum Status {
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error',
+export type SearchPizzaParams = {
+  sortBy: string
+  category: string
+  orderBy: string
+  searchBy: string
+  currentPage: string
 }
 
 export enum PizzaSizes {
   'SMALL' = 26,
   'MEDIUM' = 30,
   'LARGE' = 40,
-}
-
-export interface PizzaSliceState {
-  items: Pizza[]
-  status: Status
 }

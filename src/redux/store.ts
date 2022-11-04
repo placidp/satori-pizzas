@@ -1,15 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { itemsApi } from './itemsApi'
 import filter from './filter/slice'
 import cart from './cart/slice'
-import pizza from './pizza/slice'
 import { useDispatch } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
     filter,
     cart,
-    pizza,
+    [itemsApi.reducerPath]: itemsApi.reducer,
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(itemsApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>
