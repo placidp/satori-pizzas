@@ -4,12 +4,11 @@ import logoSvg from '../assets/img/pizza-logo.svg'
 
 import { Search } from './'
 
-import { useSelector } from 'react-redux'
-
+import { useAppSelector } from '../redux/store'
 import { selectCart } from '../redux/cart/selectors'
 
 export const Header: FC = () => {
-  const { items, totalPrice } = useSelector(selectCart)
+  const { items, totalPrice } = useAppSelector(selectCart)
   const location = useLocation()
   const isMounted = useRef(false)
 

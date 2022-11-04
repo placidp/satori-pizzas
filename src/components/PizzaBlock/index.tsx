@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch } from '../../redux/store'
+import { useAppSelector } from '../../redux/store'
 import { Link } from 'react-router-dom'
 import { selectCartItemByIdTypeSize } from '../../redux/cart/selectors'
 
@@ -26,8 +27,8 @@ type PizzaBlockProps = {
 export const PizzaBlock: FC<PizzaBlockProps> = ({ id, name, prices, imageUrl, sizes, types }) => {
   const [activeType, setActiveType] = useState(0)
   const [activeSize, setActiveSize] = useState(0)
-  const dispatch = useDispatch()
-  const cartItem = useSelector(
+  const dispatch = useAppDispatch()
+  const cartItem = useAppSelector(
     selectCartItemByIdTypeSize(id, pizzaTypes[activeType], sizes[activeSize])
   )
 

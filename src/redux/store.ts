@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { itemsApi } from './itemsApi'
 import filter from './filter/slice'
 import cart from './cart/slice'
-import { useDispatch } from 'react-redux'
+import { itemsApi } from './itemsApi'
+import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
@@ -16,4 +16,5 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>
 
 type AppDispatch = typeof store.dispatch
-export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

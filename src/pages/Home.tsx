@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react'
 import { useGetItemsQuery } from '../redux/itemsApi'
 
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '../redux/store'
 import { useAppDispatch } from '../redux/store'
 import { setCategoryId, setCurrentPage } from '../redux/filter/slice'
 import { selectFilter } from '../redux/filter/selectors'
@@ -11,7 +11,7 @@ import { Categories, Sort, Pagination, Skeleton, PizzaBlock } from '../component
 const Home: FC = () => {
   const dispatch = useAppDispatch()
 
-  const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter)
+  const { categoryId, sort, currentPage, searchValue } = useAppSelector(selectFilter)
 
   const sortBy = sort.sortProperty.replace('-', '')
   const orderBy = sort.sortProperty.includes('-') ? 'asc' : 'desc'

@@ -1,5 +1,5 @@
 import { FC, memo, useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../redux/store'
 import { useToggleSort } from '../hooks/useToggleSort'
 import { setSortType } from '../redux/filter/slice'
 import { Sort as SortType, SortPropertyEnum } from '../redux/filter/types'
@@ -24,7 +24,7 @@ export const sortList: SortItem[] = [
 ]
 
 export const Sort: FC<SortProps> = memo(({ value }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const sortRef = useRef<HTMLSpanElement>(null)
 
   const [isOpen, setIsOpen] = useState(false)

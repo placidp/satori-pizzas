@@ -88,8 +88,6 @@ body {
     justify-content: space-between;
 
     @media (max-width: 1260px) {
-      // flex-direction: column-reverse;
-
       .categories {
         width: 100%;
         overflow: auto;
@@ -441,7 +439,6 @@ body {
   width: 100%;
   padding: 1.5rem;
 }
-// scrollbar
 
 ::-webkit-scrollbar {
   width: 16px;
@@ -449,7 +446,6 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  // background: #ffdbc4;
   border-radius: 100vw;
   margin-block: 5px;
 }
