@@ -5,6 +5,7 @@ import Home from './pages/Home'
 
 import MainLayout from './layouts/MainLayout'
 import './scss/app.scss'
+import { BasicSkeleton } from './components/BasicSkeleton'
 
 const Cart = lazy(() => import(/* webpackChunkName: "Cart" */ './pages/Cart'))
 const FullPizza = lazy(() => import(/* webpackChunkName: "FullPizza" */ './pages/FullPizza'))
@@ -18,7 +19,7 @@ function App() {
         <Route
           path='/cart'
           element={
-            <Suspense fallback='Загрузка корзины...'>
+            <Suspense fallback={<BasicSkeleton />}>
               <Cart />
             </Suspense>
           }
@@ -26,7 +27,7 @@ function App() {
         <Route
           path='/pizza/:id'
           element={
-            <Suspense fallback='Загрузка...'>
+            <Suspense fallback={<BasicSkeleton />}>
               <FullPizza />
             </Suspense>
           }
@@ -34,7 +35,7 @@ function App() {
         <Route
           path='*'
           element={
-            <Suspense fallback='Загрузка...'>
+            <Suspense fallback={<BasicSkeleton />}>
               <NotFound />
             </Suspense>
           }

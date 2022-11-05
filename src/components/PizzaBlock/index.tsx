@@ -90,7 +90,6 @@ export const PizzaBlock: FC<PizzaBlockProps> = ({ id, name, prices, imageUrl, si
           </ul>
         </div>
         <div className='pizza-block__bottom'>
-          {/* <div className='pizza-block__price'>от {prices.small || prices.medium} ₽</div> */}
           <div className='pizza-block__price'>от {price} ₽</div>
           <button onClick={onClickAdd} className='button button--outline button--add'>
             <svg

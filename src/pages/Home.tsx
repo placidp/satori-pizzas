@@ -40,7 +40,7 @@ const Home: FC = () => {
   }
 
   const pizzas = data.map((item: any) => <PizzaBlock key={item.id} {...item} />)
-  const skeleton = [...new Array(4)].map((_, index) => <Skeleton key={index} />)
+  const skeleton = [...new Array(8)].map((_, index) => <Skeleton key={index} />)
 
   return (
     <div className='container'>
