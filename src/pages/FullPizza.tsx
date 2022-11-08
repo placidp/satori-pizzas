@@ -2,12 +2,23 @@ import axios from 'axios'
 import { useState, useEffect, FC } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-import { selectCart, selectCartItemByIdTypeSize } from '../redux/cart/selectors'
-import { useAppSelector } from '../redux/store'
+import { useGetItemQuery } from '../redux/itemsApi'
 
-import { Skeleton } from '../components'
+import { selectCartItemById } from '../redux/cart/selectors'
+import { useAppSelector } from '../redux/store'
+// import { useAppSelector } from '../redux/store'
+
+// import { Skeleton } from '../components'
+
+// import {  } from '../redux/pizza/slice'
 
 const FullPizza: FC = () => {
+  // const pizzaSlice = useAppSelector(state => state.pizza)
+  // console.log(`pizza slice`, pizzaSlice)
+
+  // const hasPizza = useAppSelector(selectCartItemById)
+  // console.log(test)
+
   // mocking info for now
   const pizzaTypes = ['тонкое', 'традиционное']
   const sizes = [26, 30, 40]
@@ -16,33 +27,38 @@ const FullPizza: FC = () => {
   const [activeSize, setActiveSize] = useState(0)
   //
 
-  const [pizza, setPizza] = useState<{
-    imageUrl: string
-    name: string
-    price: number
-  }>()
-  console.log(pizza)
+  // const [pizza, setPizza] = useState<{
+  //   imageUrl: string
+  //   name: string
+  //   price: number
+  // }>()
+  // console.log(`fetching pizzas`, pizza)
 
-  const params = useParams()
+  const params = useParams<{ id?: string }>()
+  const hasPizza = useAppSelector(state => state.cart.items.find(obj => obj.id === params.id))
+  const addedCount = hasPizza?.count
   const navigate = useNavigate()
+  const { data: pizza, isLoading } = useGetItemQuery(params.id ? params.id : '1')
+
+  // console.log('pizza', pizza)
 
   const onClickAdd = () => {}
 
-  useEffect(() => {
-    async function fetchPizza() {
-      try {
-        const { data } = await axios.get(
-          'https://628b53177886bbbb37b5a7c5.mockapi.io/items/' + params.id
-        )
-        setPizza(data)
-      } catch (error) {
-        alert('Ошибка при получении пиццы')
-        navigate('/')
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchPizza() {
+  //     try {
+  //       const { data } = await axios.get(
+  //         'https://628b53177886bbbb37b5a7c5.mockapi.io/items/' + params.id
+  //       )
+  //       setPizza(data)
+  //     } catch (error) {
+  //       alert('Ошибка при получении пиццы')
+  //       navigate('/')
+  //     }
+  //   }
 
-    fetchPizza()
-  }, [])
+  //   fetchPizza()
+  // }, [])
 
   if (!pizza) {
     return (
@@ -123,7 +139,7 @@ const FullPizza: FC = () => {
               ></path>
             </svg>
             <span>Добавить</span>
-            {/* {addedCount > 0 && <i>{addedCount}</i>} */}
+            {addedCount && <i>{addedCount}</i>}
           </button>
         </div>
       </div>

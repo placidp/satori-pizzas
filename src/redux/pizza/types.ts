@@ -1,6 +1,7 @@
 export type Pizza = {
   id: string
   name: string
+  price: number
   prices: {
     small?: number
     medium?: number
@@ -9,6 +10,22 @@ export type Pizza = {
   imageUrl: string
   sizes: PizzaSizes
   types: number[]
+  rating: number
+}
+// !need to fix these types
+export type PizzaSliceState = {
+  id: string
+  name: string
+  price: number
+  prices: {
+    small?: number
+    medium?: number
+    large?: number
+  }
+  imageUrl: string
+  sizes: number[]
+  types: number[]
+  category: number
   rating: number
 }
 
