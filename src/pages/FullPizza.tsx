@@ -1,64 +1,57 @@
-import axios from 'axios'
-import { useState, useEffect, FC } from 'react'
+import { useState, FC } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useGetItemQuery } from '../redux/itemsApi'
 
-import { selectCartItemById } from '../redux/cart/selectors'
+import { selectCartItemByIdTypeSize } from '../redux/cart/selectors'
 import { useAppSelector } from '../redux/store'
-// import { useAppSelector } from '../redux/store'
+import { PizzaSizes } from '../redux/pizza/types'
 
-// import { Skeleton } from '../components'
-
-// import {  } from '../redux/pizza/slice'
+const pizzaTypes = ['тонкое', 'традиционное']
 
 const FullPizza: FC = () => {
-  // const pizzaSlice = useAppSelector(state => state.pizza)
-  // console.log(`pizza slice`, pizzaSlice)
+  const params = useParams<{ id?: string }>()
+  const navigate = useNavigate()
+  const { data: pizza, isLoading, isError } = useGetItemQuery(params.id ? params.id : '1')
 
-  // const hasPizza = useAppSelector(selectCartItemById)
-  // console.log(test)
-
-  // mocking info for now
-  const pizzaTypes = ['тонкое', 'традиционное']
-  const sizes = [26, 30, 40]
-  const types = [0, 1]
   const [activeType, setActiveType] = useState(0)
   const [activeSize, setActiveSize] = useState(0)
-  //
 
-  // const [pizza, setPizza] = useState<{
-  //   imageUrl: string
-  //   name: string
-  //   price: number
-  // }>()
-  // console.log(`fetching pizzas`, pizza)
+  const sizes = pizza?.sizes ? pizza.sizes : [36, 40]
+  const types = pizza?.types ? pizza.types : [0, 1]
 
-  const params = useParams<{ id?: string }>()
-  const hasPizza = useAppSelector(state => state.cart.items.find(obj => obj.id === params.id))
-  const addedCount = hasPizza?.count
-  const navigate = useNavigate()
-  const { data: pizza, isLoading } = useGetItemQuery(params.id ? params.id : '1')
+  const hasItemInCart = useAppSelector(
+    selectCartItemByIdTypeSize(params.id!, pizzaTypes[activeType], sizes[activeSize])
+  )
 
-  // console.log('pizza', pizza)
+  if (isLoading) {
+    return <>Loading...</>
+  }
+  if (isError) {
+    navigate('/')
+    return <>Error</>
+  }
+
+  if (!pizza) {
+    return <></>
+  }
+
+  console.log('pizza', pizza)
+
+  const addedCount = hasItemInCart?.count
 
   const onClickAdd = () => {}
 
-  // useEffect(() => {
-  //   async function fetchPizza() {
-  //     try {
-  //       const { data } = await axios.get(
-  //         'https://628b53177886bbbb37b5a7c5.mockapi.io/items/' + params.id
-  //       )
-  //       setPizza(data)
-  //     } catch (error) {
-  //       alert('Ошибка при получении пиццы')
-  //       navigate('/')
-  //     }
-  //   }
+  // pizza types change price
+  let price: number = pizza.prices.small!
 
-  //   fetchPizza()
-  // }, [])
+  if (pizza.prices.medium && sizes[activeSize] === PizzaSizes.MEDIUM) {
+    price = pizza.prices.medium
+  } else if (pizza.prices.large && sizes[activeSize] === PizzaSizes.LARGE) {
+    price = pizza.prices.large
+  } else if (pizza.prices.small) {
+    price = pizza.prices.small
+  }
 
   if (!pizza) {
     return (
@@ -120,7 +113,7 @@ const FullPizza: FC = () => {
           </ul>
         </div>
         <div className='pizza-block__bottom' style={{ width: '100%' }}>
-          <div className='pizza-block__price'>от {pizza.price} ₽</div>
+          <div className='pizza-block__price'>от {price} ₽</div>
           <button
             onClick={onClickAdd}
             className='button button--outline button--add'

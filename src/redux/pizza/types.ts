@@ -8,25 +8,15 @@ export type Pizza = {
     large?: number
   }
   imageUrl: string
-  sizes: PizzaSizes
+  sizes: number[]
   types: number[]
   rating: number
 }
-// !need to fix these types
+
 export type PizzaSliceState = {
-  id: string
-  name: string
-  price: number
-  prices: {
-    small?: number
-    medium?: number
-    large?: number
-  }
-  imageUrl: string
-  sizes: number[]
-  types: number[]
-  category: number
-  rating: number
+  item?: Pizza
+  activeType: number
+  activeSize: number
 }
 
 export type SearchPizzaParams = {
