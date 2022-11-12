@@ -9,10 +9,6 @@ type SortItem = {
   sortProperty: SortPropertyEnum
 }
 
-type PopupClick = MouseEvent & {
-  path: Node[]
-}
-
 type SortProps = {
   value: SortType
 }
@@ -38,8 +34,7 @@ export const Sort: FC<SortProps> = memo(({ value }) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const _event = event as PopupClick
-      if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setIsOpen(false)
       }
     }
