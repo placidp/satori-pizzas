@@ -10,7 +10,7 @@ https://react-pizza-gepiko.vercel.app/
 - [x] fix skeleton ui
 - [x] add caching pizzas
 - [x] add sort icons
-- [ ] add page for single pizza
+- [x] add page for single pizza
 - [x] pizza card css fix
 - [x] clean up comments
 - [ ] fix static page count
