@@ -1,4 +1,4 @@
-export enum SortPropertyEnum {
+export enum SortType {
   RATING_DESC = 'rating',
   RATING_ASC = '-rating',
   NAME_DESC = 'name',
@@ -9,7 +9,7 @@ export enum SortPropertyEnum {
 
 export type Sort = {
   name: string
-  sortProperty: SortPropertyEnum
+  SortType: SortType
 }
 
 export interface FilterSliceState {

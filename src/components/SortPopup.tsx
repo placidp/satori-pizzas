@@ -2,24 +2,24 @@ import { FC, memo, useEffect, useRef, useState } from 'react'
 import { useAppDispatch } from '../redux/store'
 import { useToggleSort } from '../hooks/useToggleSort'
 import { setSortType } from '../redux/filter/slice'
-import { Sort as SortType, SortPropertyEnum } from '../redux/filter/types'
+import { Sort, SortType } from '../redux/filter/types'
 
 type SortItem = {
   name: string
-  sortProperty: SortPropertyEnum
+  SortType: SortType
 }
 
-type SortProps = {
-  value: SortType
+type SortPopupProps = {
+  value: Sort
 }
 
 export const sortList: SortItem[] = [
-  { name: 'цене', sortProperty: SortPropertyEnum.PRICE_ASC },
-  { name: 'алфавиту', sortProperty: SortPropertyEnum.NAME_ASC },
-  { name: 'популярности', sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: 'цене', SortType: SortType.PRICE_ASC },
+  { name: 'алфавиту', SortType: SortType.NAME_ASC },
+  { name: 'популярности', SortType: SortType.RATING_ASC },
 ]
 
-export const Sort: FC<SortProps> = memo(({ value }) => {
+export const SortPopup: FC<SortPopupProps> = memo(({ value }) => {
   const dispatch = useAppDispatch()
   const sortRef = useRef<HTMLSpanElement>(null)
 
@@ -48,8 +48,8 @@ export const Sort: FC<SortProps> = memo(({ value }) => {
       <div className='sort__label'>
         <b>Сортировка по:</b>
         <svg
-          onClick={() => toggleSortIcon(value.sortProperty)}
-          className={!value.sortProperty.includes('-') ? 'reversed' : ''}
+          onClick={() => toggleSortIcon(value.SortType)}
+          className={!value.SortType.includes('-') ? 'reversed' : ''}
           width='15'
           height='9'
           viewBox='0 0 10 6'

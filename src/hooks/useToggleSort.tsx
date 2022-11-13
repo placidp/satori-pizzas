@@ -1,16 +1,14 @@
 import { useAppDispatch } from '../redux/store'
 import { setSortTypeToggle } from '../redux/filter/slice'
-import { SortPropertyEnum } from '../redux/filter/types'
+import { SortType } from '../redux/filter/types'
 
 export function useToggleSort() {
   const dispatch = useAppDispatch()
 
-  function toggleSortIcon(sortProperty: SortPropertyEnum) {
-    const sortIconReversed = sortProperty.includes('-')
-      ? sortProperty.replace('-', '')
-      : `-${sortProperty}`
+  function toggleSortIcon(SortType: SortType) {
+    const sortIconReversed = SortType.includes('-') ? SortType.replace('-', '') : `-${SortType}`
 
-    dispatch(setSortTypeToggle(sortIconReversed as SortPropertyEnum))
+    dispatch(setSortTypeToggle(sortIconReversed as SortType))
   }
 
   return { toggleSortIcon }

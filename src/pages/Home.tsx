@@ -6,15 +6,15 @@ import { useAppDispatch } from '../redux/store'
 import { setCategoryId, setCurrentPage } from '../redux/filter/slice'
 import { selectFilter } from '../redux/filter/selectors'
 
-import { Categories, Sort, Pagination, Skeleton, PizzaBlock } from '../components'
+import { Categories, SortPopup, Pagination, Skeleton, PizzaBlock } from '../components'
 
 const Home: FC = () => {
   const dispatch = useAppDispatch()
 
   const { categoryId, sort, currentPage, searchValue } = useAppSelector(selectFilter)
 
-  const sortBy = sort.sortProperty.replace('-', '')
-  const orderBy = sort.sortProperty.includes('-') ? 'asc' : 'desc'
+  const sortBy = sort.SortType.replace('-', '')
+  const orderBy = sort.SortType.includes('-') ? 'asc' : 'desc'
   const category = categoryId > 0 ? `category=${categoryId}` : ''
   const searchBy = searchValue ? `&search=${searchValue}` : ''
 
@@ -46,7 +46,7 @@ const Home: FC = () => {
     <div className='container'>
       <div className='content__top'>
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-        <Sort value={sort} />
+        <SortPopup value={sort} />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       {isError ? (
