@@ -51,7 +51,7 @@
 
         &.active,
         &:hover {
-          background: rgba(254, 95, 30, 0.05);
+          background: lighten($color: $background, $amount: 7);
         }
 
         &.active {

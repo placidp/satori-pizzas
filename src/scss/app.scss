@@ -427,8 +427,8 @@ body {
         }
 
         &:hover {
-          background-color: darken($color: $gray-line, $amount: 90);
-          border-color: darken($color: $gray-line, $amount: 90);
+          background-color: darken($color: $orange, $amount: 60);
+          border-color: darken($color: $orange, $amount: 60);
 
           span {
             color: $gray-line;

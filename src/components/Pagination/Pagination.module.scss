@@ -7,7 +7,7 @@
     display: inline-block;
 
     .selected {
-      background-color: #fe5f1e;
+      background-color: darken($orange, 12%);
       color: #fff;
     }
 
@@ -17,17 +17,17 @@
       line-height: 20px;
       height: 40px;
       padding: 10px;
-      border: 1px solid #fe5f1e;
+      border: 1px solid $orange;
       border-radius: 30px;
       margin-right: 10px;
       cursor: pointer;
       user-select: none;
       display: inline-block;
-      color: #fe5f1e;
+      color: $orange;
       transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
 
       &:hover {
-        background-color: #fe5f1e;
+        background-color: darken($orange, 8%);
         color: #fff;
       }
     }
@@ -36,7 +36,7 @@
   :global {
     .selected {
       a {
-        background-color: #fe5f1e;
+        background-color: $orange;
         color: #fff;
       }
     }
