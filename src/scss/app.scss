@@ -507,12 +507,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #fe5f1e;
+  background: $orange;
   border-radius: 100vw;
-}
 
-::-webkit-scrollbar-thumb:hover {
-  background: #e5541b;
+  &:hover {
+    background: darken($color: $orange, $amount: 5);
+  }
 }
 
 .fullPizzaContainer {
