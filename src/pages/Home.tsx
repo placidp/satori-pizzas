@@ -37,6 +37,7 @@ const Home: FC = () => {
 
   const onPageChange = (page: number) => {
     dispatch(setCurrentPage(page))
+    window.scrollTo(0, 0)
   }
 
   const pizzas = data.map((item: any) => <PizzaBlock key={item.id} {...item} />)
