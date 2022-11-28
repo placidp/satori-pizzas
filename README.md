@@ -13,6 +13,6 @@ https://react-pizza-gepiko.vercel.app/
 - [x] add page for single pizza
 - [x] pizza card css fix
 - [x] clean up comments
-- [ ] fix static page count
+- [x] fix static page count
 - [x] add suspense fallback skeleton / loader
 - [x] fix search component's css
