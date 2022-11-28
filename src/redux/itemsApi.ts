@@ -13,7 +13,11 @@ export const itemsApi = createApi({
     getItem: build.query<Pizza, string>({
       query: id => `items/${id}`,
     }),
+    getItemsByCategory: build.query<Pizza[], SearchPizzaParams>({
+      query: ({ currentPage, category, sortBy, orderBy, searchBy }) =>
+        `items?page=${currentPage}&${category}&sortBy=${sortBy}&order=${orderBy}${searchBy}`,
+    }),
   }),
 })
 
-export const { useGetItemsQuery, useGetItemQuery } = itemsApi
+export const { useGetItemsQuery, useGetItemQuery, useGetItemsByCategoryQuery } = itemsApi

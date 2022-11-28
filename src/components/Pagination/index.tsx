@@ -6,9 +6,12 @@ import styles from './Pagination.module.scss'
 type PaginationProps = {
   currentPage: number
   onChangePage: (page: number) => void
+  itemsLength: number
 }
 
-export const Pagination: FC<PaginationProps> = ({ currentPage, onChangePage }) => (
+const itemsPerPage = 8
+
+export const Pagination: FC<PaginationProps> = ({ currentPage, onChangePage, itemsLength = 1 }) => (
   <ReactPaginate
     className={styles.root}
     breakLabel='...'
@@ -16,7 +19,7 @@ export const Pagination: FC<PaginationProps> = ({ currentPage, onChangePage }) =
     previousLabel='<'
     onPageChange={e => onChangePage(e.selected + 1)}
     pageRangeDisplayed={4}
-    pageCount={3}
+    pageCount={Math.ceil(itemsLength / itemsPerPage)}
     forcePage={currentPage - 1}
   />
 )

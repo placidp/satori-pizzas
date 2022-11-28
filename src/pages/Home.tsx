@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react'
-import { useGetItemsQuery } from '../redux/itemsApi'
+import { useGetItemsByCategoryQuery, useGetItemsQuery } from '../redux/itemsApi'
 
 import { useAppSelector } from '../redux/store'
 import { useAppDispatch } from '../redux/store'
@@ -18,6 +18,7 @@ const Home: FC = () => {
   const category = categoryId > 0 ? `category=${categoryId}` : ''
   const searchBy = searchValue ? `&search=${searchValue}` : ''
 
+  // get items by our query / filters
   const {
     data = [],
     isLoading,
@@ -29,6 +30,17 @@ const Home: FC = () => {
     searchBy,
     currentPage: String(currentPage),
   })
+  console.log('data', data)
+
+  // get all items
+  const { data: dataByCategory = [] } = useGetItemsByCategoryQuery({
+    sortBy,
+    orderBy,
+    category,
+    searchBy,
+    currentPage: String(currentPage),
+  })
+  console.log('dataByCategory', dataByCategory)
 
   const onChangeCategory = useCallback((idx: number) => {
     dispatch(setCategoryId(idx))
@@ -63,7 +75,11 @@ const Home: FC = () => {
         <div className='content__items'>{isLoading ? skeleton : pizzas}</div>
       )}
 
-      <Pagination currentPage={currentPage} onChangePage={onPageChange} />
+      <Pagination
+        currentPage={currentPage}
+        onChangePage={onPageChange}
+        itemsLength={dataByCategory.length}
+      />
     </div>
   )
 }
