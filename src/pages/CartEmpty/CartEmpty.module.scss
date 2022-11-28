@@ -1,0 +1,47 @@
+.container {
+  margin: 40px auto;
+  text-align: center;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+
+    span {
+      @media (max-width: 400px) {
+        display: none;
+      }
+    }
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 145.4%;
+    letter-spacing: 0.01em;
+    color: #777777;
+    padding: 5px 10px;
+  }
+
+  icon {
+    position: relative;
+    top: 2px;
+  }
+
+  img {
+    display: block;
+    width: 300px;
+    margin: 45px auto 60px;
+
+    @media (max-width: 400px) {
+      width: 85%;
+    }
+  }
+
+  .button--black {
+    padding: 12px 0 14px;
+    width: 230px;
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: 18px;
+  }
+}

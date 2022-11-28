@@ -4,6 +4,8 @@ import { useAppDispatch } from '../../redux/store'
 import { addItem, minusItem, removeItem } from '../../redux/cart/slice'
 import { CartItem as CartItemType } from '../../redux/cart/types'
 
+import styles from './CartItem.module.scss'
+
 type CartItemProps = {
   id: string
   name: string
@@ -30,22 +32,22 @@ export const CartItem: FC<CartItemProps> = ({ id, name, type, size, price, count
   }
 
   return (
-    <div className='content__items'>
-      <div className='cart__item'>
-        <div className='cart__item-img'>
-          <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
+    <div className={styles.content__items}>
+      <div className={styles.item}>
+        <div className={styles.img}>
+          <img src={imageUrl} alt='Pizza' />
         </div>
-        <div className='cart__item-info'>
+        <div className={styles.info}>
           <h3>{name}</h3>
           <p>
             {type}, {size} см.
           </p>
         </div>
-        <div className='cart__item-count'>
+        <div className={styles.count}>
           <button
             disabled={count === 1}
             onClick={onClickMinus}
-            className='button button--outline button--circle cart__item-count-minus'
+            className={`${styles.count__minus} button button--outline button--circle`}
           >
             <svg
               width='10'
@@ -65,10 +67,7 @@ export const CartItem: FC<CartItemProps> = ({ id, name, type, size, price, count
             </svg>
           </button>
           <b>{count}</b>
-          <button
-            onClick={onClickPlus}
-            className='button button--outline button--circle cart__item-count-plus'
-          >
+          <button onClick={onClickPlus} className='button button--outline button--circle'>
             <svg
               width='10'
               height='10'
@@ -87,10 +86,10 @@ export const CartItem: FC<CartItemProps> = ({ id, name, type, size, price, count
             </svg>
           </button>
         </div>
-        <div className='cart__item-price'>
+        <div className={styles.price}>
           <b>{price * count} ₽</b>
         </div>
-        <div className='cart__item-remove'>
+        <div className={styles.remove}>
           <div onClick={onClickRemove} className='button button--outline button--circle'>
             <svg
               width='10'

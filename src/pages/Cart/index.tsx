@@ -1,11 +1,13 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { useAppDispatch } from '../redux/store'
-import { useAppSelector } from '../redux/store'
-import { clearItems } from '../redux/cart/slice'
-import { selectCart } from '../redux/cart/selectors'
+import { useAppDispatch } from '../../redux/store'
+import { useAppSelector } from '../../redux/store'
+import { clearItems } from '../../redux/cart/slice'
+import { selectCart } from '../../redux/cart/selectors'
 
-import { CartItem, CartEmpty } from '../components'
+import { CartItem, CartEmpty } from '../../components'
+
+import styles from './Cart.module.scss'
 
 const Cart: FC = () => {
   const dispatch = useAppDispatch()
@@ -24,10 +26,10 @@ const Cart: FC = () => {
   }
 
   return (
-    <div className='container container--cart'>
-      <div className='cart'>
-        <div className='cart__top'>
-          <h2 className='content__title'>
+    <div className={`${styles.container}`}>
+      <div className={styles.cart}>
+        <div className={styles.cart__top}>
+          <h2 className={styles.content__title}>
             <svg
               width='18'
               height='18'
@@ -59,7 +61,7 @@ const Cart: FC = () => {
             </svg>
             Корзина
           </h2>
-          <div onClick={onClickClear} className='cart__clear'>
+          <div onClick={onClickClear} className={styles.cart__clear}>
             <svg
               width='20'
               height='20'
@@ -104,8 +106,8 @@ const Cart: FC = () => {
           <CartItem key={item.id + item.type + item.size} {...item} />
         ))}
 
-        <div className='cart__bottom'>
-          <div className='cart__bottom-details'>
+        <div className={styles.cart__bottom}>
+          <div className={styles.cart__details}>
             <span>
               {' '}
               Всего пицц: <b>{totalCount} шт.</b>{' '}
@@ -115,8 +117,8 @@ const Cart: FC = () => {
               Сумма заказа: <b>{totalPrice} ₽</b>{' '}
             </span>
           </div>
-          <div className='cart__bottom-buttons'>
-            <Link className='button button--outline button--add go-back-btn' to='/'>
+          <div className={styles.cart__buttons}>
+            <Link className={`${styles.backButton} button button--outline`} to='/'>
               <svg
                 width='8'
                 height='14'
@@ -134,7 +136,7 @@ const Cart: FC = () => {
               </svg>
               <span>Вернуться назад</span>
             </Link>
-            <div className='button pay-btn'>
+            <div className={`${styles.payButton} button`}>
               <span>Оплатить сейчас</span>
             </div>
           </div>
