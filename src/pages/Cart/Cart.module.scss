@@ -11,8 +11,8 @@
   }
 }
 
-.cart {
-  &__top {
+.root {
+  .cart__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,7 +37,7 @@
     }
   }
 
-  &__clear {
+  .cart__clear {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -74,11 +74,11 @@
     }
   }
 
-  &__bottom {
+  .cart__bottom {
     margin: 50px 0;
   }
 
-  &__details {
+  .cart__details {
     display: flex;
     justify-content: space-between;
 
@@ -104,7 +104,7 @@
     }
   }
 
-  &__buttons {
+  .cart__buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 40px;

@@ -1,6 +1,13 @@
 export type Pizza = {
   id: string
   name: string
+  ingredients: string
+  description: {
+    calories: number
+    proteins: number
+    fats: number
+    carbs: number
+  }
   price: number
   prices: {
     small?: number

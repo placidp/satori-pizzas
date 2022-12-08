@@ -26,8 +26,8 @@ const Cart: FC = () => {
   }
 
   return (
-    <div className={`${styles.container}`}>
-      <div className={styles.cart}>
+    <div className={styles.container}>
+      <div className={styles.root}>
         <div className={styles.cart__top}>
           <h2 className={styles.content__title}>
             <svg

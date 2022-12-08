@@ -16,7 +16,7 @@ export const CartEmpty: FC = () => (
       Для того, чтобы заказать пиццу, перейди на главную страницу.
     </p>
     <img src={cartEmptyImg} alt='Empty cart' />
-    <Link to='/' className='button button--black'>
+    <Link to='/' className={`button button--black ${styles.buttonBlack}`}>
       <span>Вернуться назад</span>
     </Link>
   </div>

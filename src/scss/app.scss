@@ -175,28 +175,4 @@ body {
   .pizza-block {
     width: clamp(300px, 500px, 100%);
   }
-
-  .descriptionContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-
-    .pizza-block__bottom {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-
-      .pizza-block__actions {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        button {
-          max-height: 45px;
-          min-width: 160px;
-        }
-      }
-    }
-  }
 }

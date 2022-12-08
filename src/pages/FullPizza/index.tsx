@@ -1,13 +1,15 @@
 import { useState, FC } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-import { useGetItemQuery } from '../redux/itemsApi'
+import { useGetItemQuery } from '../../redux/itemsApi'
 
-import { selectCartItemByIdTypeSize } from '../redux/cart/selectors'
-import { useAppDispatch, useAppSelector } from '../redux/store'
-import { PizzaSizes } from '../redux/pizza/types'
-import { addItem } from '../redux/cart/slice'
-import { CartItem } from '../redux/cart/types'
+import { selectCartItemByIdTypeSize } from '../../redux/cart/selectors'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { PizzaSizes } from '../../redux/pizza/types'
+import { addItem } from '../../redux/cart/slice'
+import { CartItem } from '../../redux/cart/types'
+
+import styles from './FullPizza.module.scss'
 
 const pizzaTypes = ['тонкое', 'традиционное']
 
@@ -69,10 +71,7 @@ const FullPizza: FC = () => {
 
   return (
     <div className='fullPizzaContainer'>
-      <div
-        className='pizza-block'
-        // style={{ width: '45%' }}
-      >
+      <div className='pizza-block'>
         <a key={1}>
           <img
             className='pizza-block__image'
@@ -82,25 +81,30 @@ const FullPizza: FC = () => {
           />
         </a>
       </div>
-      <div className='descriptionContainer'>
-        <div className='composition'>
-          <h4 className='pizza-block__title'>{pizza.name}</h4>
-          <p>
-            {/* Моцарелла, сыры чеддер и пармезан, фирменный соус альфредо */}
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga, quidem!
-          </p>
-          <br />
-          Состав:
-          <p>
-            {/* Тесто дрожжевое, сыр моцарелла, соус томатный, сушеный базилик. <br />
-            Пищевая ценность на 100 г.: Белки: 13.7 г. Жиры: 11.9 г. Углеводы: 38.4 г. <br />
-            Энергетическая ценность: 315.9 ккал / 1320.7 кДж */}
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde praesentium ipsa
-            repellendus saepe soluta distinctio commodi minus, officiis quasi quo, assumenda ratione
-            sint. Repudiandae, nostrum.
-          </p>
-        </div>
-        <div className='pizza-block__bottom' style={{ width: '100%' }}>
+      <div className={styles.about}>
+        <h2 className='pizza-block__title'>{pizza.name}</h2>
+        <section className={styles.description}>
+          <div className={styles.ingredients}>
+            <h3>Состав</h3>
+            <span>{pizza.ingredients}</span>
+          </div>
+          <h4>Пищевая ценность на 100 г</h4>
+          <div className={styles.nutrients}>
+            <div>
+              <span>Энерг. ценность: </span>
+              <span>Жиры: </span>
+              <span>Белки: </span>
+              <span>Углеводы: </span>
+            </div>
+            <div>
+              <span>{pizza.description.calories}</span>
+              <span>{pizza.description.fats}</span>
+              <span>{pizza.description.carbs}</span>
+              <span>{pizza.description.proteins}</span>
+            </div>
+          </div>
+        </section>
+        <div className={styles.bottom} style={{ width: '100%' }}>
           <div
             className='pizza-block__selector'
             style={{ width: '100%', alignItems: 'center', textAlign: 'center', padding: '8px' }}
@@ -128,7 +132,7 @@ const FullPizza: FC = () => {
               ))}
             </ul>
           </div>
-          <div className='pizza-block__actions'>
+          <div className={styles.actions}>
             <button
               onClick={onClickAdd}
               className='button button--outline button--add'
