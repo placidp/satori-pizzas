@@ -1,6 +1,6 @@
-import styles from './BasicSkeleton.module.scss'
+import styles from './EmptyCartSkeleton.module.scss'
 
-export const BasicSkeleton = () => {
+export const EmptyCartSkeleton = () => {
   return (
     <div className={styles.cartEmpty}>
       <h2>

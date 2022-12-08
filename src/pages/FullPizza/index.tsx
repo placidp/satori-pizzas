@@ -30,7 +30,17 @@ const FullPizza: FC = () => {
   )
 
   if (isLoading) {
-    return <>Loading...</>
+    return (
+      <span
+        style={{
+          display: 'block',
+          padding: '140px 100px',
+          minWidth: '1400px',
+          minHeight: '486px',
+          margin: '0 auto',
+        }}
+      ></span>
+    )
   }
   if (isError) {
     navigate('/')

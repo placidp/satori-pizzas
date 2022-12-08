@@ -5,7 +5,7 @@ import Home from './pages/Home'
 
 import MainLayout from './layouts/MainLayout'
 import './scss/app.scss'
-import { BasicSkeleton } from './components/BasicSkeleton'
+import { EmptyCartSkeleton } from './components/EmptyCartSkeleton'
 
 const Cart = lazy(() => import(/* webpackChunkName: "Cart" */ './pages/Cart'))
 const FullPizza = lazy(() => import(/* webpackChunkName: "FullPizza" */ './pages/FullPizza'))
@@ -19,7 +19,7 @@ function App() {
         <Route
           path='/cart'
           element={
-            <Suspense fallback={<BasicSkeleton />}>
+            <Suspense fallback={<EmptyCartSkeleton />}>
               <Cart />
             </Suspense>
           }
@@ -27,7 +27,19 @@ function App() {
         <Route
           path='/pizza/:id'
           element={
-            <Suspense fallback={<BasicSkeleton />}>
+            <Suspense
+              fallback={
+                <span
+                  style={{
+                    display: 'block',
+                    padding: '140px 100px',
+                    minWidth: '1400px',
+                    minHeight: '486px',
+                    margin: '0 auto',
+                  }}
+                ></span>
+              }
+            >
               <FullPizza />
             </Suspense>
           }
@@ -35,7 +47,19 @@ function App() {
         <Route
           path='*'
           element={
-            <Suspense fallback={<BasicSkeleton />}>
+            <Suspense
+              fallback={
+                <span
+                  style={{
+                    display: 'block',
+                    padding: '140px 100px',
+                    minWidth: '1400px',
+                    minHeight: '442px',
+                    margin: '0 auto',
+                  }}
+                ></span>
+              }
+            >
               <NotFound />
             </Suspense>
           }
