@@ -134,9 +134,33 @@ body {
   margin: 0 auto;
 }
 
+.fullPizzaContainer {
+  padding: 20px 60px 0px 60px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-row-gap: 30px;
+  justify-items: center;
+
+  @media (max-width: 1060px) {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 0;
+  }
+
+  .pizza-block {
+    width: clamp(300px, 500px, 100%);
+  }
+}
+
 .cart-skeleton {
   width: 100%;
   padding: 1.5rem;
+}
+
+::selection {
+  color: white;
+  background-color: #c8a796;
 }
 
 ::-webkit-scrollbar {
@@ -155,24 +179,5 @@ body {
 
   &:hover {
     background: darken($color: $orange, $amount: 5);
-  }
-}
-
-.fullPizzaContainer {
-  padding: 20px 60px 0px 60px;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  grid-row-gap: 30px;
-  justify-items: center;
-
-  @media (max-width: 1060px) {
-    grid-template-columns: repeat(1, 1fr);
-    grid-row-gap: 0;
-  }
-
-  .pizza-block {
-    width: clamp(300px, 500px, 100%);
   }
 }

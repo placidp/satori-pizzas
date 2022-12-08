@@ -97,10 +97,10 @@ const FullPizza: FC = () => {
               <span>Углеводы: </span>
             </div>
             <div>
-              <span>{pizza.description.calories}</span>
-              <span>{pizza.description.fats}</span>
-              <span>{pizza.description.carbs}</span>
-              <span>{pizza.description.proteins}</span>
+              <span>{pizza.description.calories} ккал</span>
+              <span>{pizza.description.proteins} г</span>
+              <span>{pizza.description.fats} г</span>
+              <span>{pizza.description.carbs} г</span>
             </div>
           </div>
         </section>
