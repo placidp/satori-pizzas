@@ -1,0 +1,56 @@
+.about {
+  display: grid;
+  grid-template-rows: 50px 1fr max-content;
+  padding: 0 20px;
+
+  h2 {
+    margin: 0;
+  }
+
+  .description {
+    margin-bottom: 25px;
+
+    h4 {
+      margin-bottom: 10px;
+    }
+  }
+
+  .ingredients {
+    margin-bottom: 15px;
+  }
+
+  .nutrients {
+    display: grid;
+    grid-template-columns: minmax(max-content, 0.7fr) 1fr;
+
+    div:first-of-type,
+    div:last-of-type {
+      display: grid;
+    }
+  }
+
+  .bottom {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button {
+        max-height: 45px;
+        min-width: 160px;
+      }
+
+      @media (max-width: 480px) {
+        flex-direction: column;
+
+        button {
+          margin: 15px 0;
+        }
+      }
+    }
+  }
+}
