@@ -146,6 +146,7 @@ body {
   @media (max-width: 1060px) {
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 0;
+    padding: 20px;
   }
 
   .pizza-block {
