@@ -30,7 +30,6 @@ const Home: FC = () => {
     searchBy,
     currentPage: String(currentPage),
   })
-  console.log('data', data)
 
   // get all items
   const { data: dataByCategory = [] } = useGetItemsByCategoryQuery({
@@ -40,7 +39,6 @@ const Home: FC = () => {
     searchBy,
     currentPage: String(currentPage),
   })
-  console.log('dataByCategory', dataByCategory)
 
   const onChangeCategory = useCallback((idx: number) => {
     dispatch(setCategoryId(idx))

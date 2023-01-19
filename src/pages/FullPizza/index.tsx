@@ -18,7 +18,6 @@ const FullPizza: FC = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const { data: pizza, isLoading, isError } = useGetItemQuery(id || '1')
-
   const [activeType, setActiveType] = useState(0)
   const [activeSize, setActiveSize] = useState(0)
 
@@ -50,8 +49,6 @@ const FullPizza: FC = () => {
   if (!pizza) {
     return <></>
   }
-
-  console.log('pizza', pizza)
 
   const addedCount = hasItemInCart?.count
 

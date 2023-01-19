@@ -29,7 +29,7 @@ function App() {
           path='/pizza/:id'
           element={
             <Suspense fallback={<FullPizzaSkeleton />}>
-              <FullPizzaSkeleton />
+              <FullPizza />
             </Suspense>
           }
         />
