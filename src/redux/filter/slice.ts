@@ -30,30 +30,10 @@ const filterSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload
     },
-    setFilters(state, action: PayloadAction<FilterSliceState>) {
-      if (Object.keys(action.payload).length) {
-        state.currentPage = Number(action.payload.currentPage)
-        state.categoryId = Number(action.payload.categoryId)
-        state.sort = action.payload.sort
-      } else {
-        state.currentPage = 1
-        state.categoryId = 0
-        state.sort = {
-          name: 'цене',
-          SortType: SortType.PRICE_ASC,
-        }
-      }
-    },
   },
 })
 
-export const {
-  setCategoryId,
-  setSearchValue,
-  setSortType,
-  setSortTypeToggle,
-  setCurrentPage,
-  setFilters,
-} = filterSlice.actions
+export const { setCategoryId, setSearchValue, setSortType, setSortTypeToggle, setCurrentPage } =
+  filterSlice.actions
 
 export default filterSlice.reducer
