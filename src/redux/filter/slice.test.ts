@@ -5,9 +5,9 @@ import filter, {
   setSortTypeToggle,
   setCurrentPage,
 } from './slice'
-import { SortType } from './types'
+import { FilterSliceState, SortType } from './types'
 
-const initialState = {
+const initialState: FilterSliceState = {
   searchValue: '',
   categoryId: 0,
   currentPage: 1,
