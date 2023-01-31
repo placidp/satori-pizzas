@@ -1,6 +1,6 @@
-import cart, { addItem, minusItem, removeItem, clearItems } from '../cart/slice'
+import cart, { addItem, clearItems } from './slice'
 import { getCartFromLS } from '../../utils/getCartFromLS'
-import { CartItem, CartSliceState } from '../cart/types'
+import { CartItem, CartSliceState } from './types'
 
 const initialState: CartSliceState = getCartFromLS()
 

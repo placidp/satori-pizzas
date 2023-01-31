@@ -4,8 +4,8 @@ import filter, {
   setSortType,
   setSortTypeToggle,
   setCurrentPage,
-} from '../filter/slice'
-import { SortType } from '../filter/types'
+} from './slice'
+import { SortType } from './types'
 
 const initialState = {
   searchValue: '',
