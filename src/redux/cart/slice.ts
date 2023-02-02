@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getCartFromLS } from '../../utils/getCartFromLS'
 import { calcTotalPrice } from '../../utils/calcTotalPrice'
+import { findItemInCart } from '../../utils/findItemInCart'
 import { CartItem, CartSliceState } from './types'
 
 const initialState: CartSliceState = getCartFromLS()
@@ -10,13 +11,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<CartItem>) {
-      const foundItem = state.items.find(obj => {
-        return (
-          obj.id === action.payload.id &&
-          obj.size === action.payload.size &&
-          obj.type === action.payload.type
-        )
-      })
+      const foundItem = findItemInCart(state, action.payload)
 
       foundItem
         ? foundItem.count++
@@ -28,13 +23,7 @@ const cartSlice = createSlice({
       state.totalPrice = calcTotalPrice(state.items)
     },
     minusItem(state, action: PayloadAction<CartItem>) {
-      const foundItem = state.items.find(obj => {
-        return (
-          obj.id === action.payload.id &&
-          obj.size === action.payload.size &&
-          obj.type === action.payload.type
-        )
-      })
+      const foundItem = findItemInCart(state, action.payload)
 
       if (foundItem) {
         foundItem.count--
