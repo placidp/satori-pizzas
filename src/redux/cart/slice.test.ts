@@ -1,4 +1,4 @@
-import cart, { addItem, clearItems } from './slice'
+import cart, { addItem, clearItems, minusItem } from './slice'
 import { getCartFromLS } from '../../utils/getCartFromLS'
 import { CartItem, CartSliceState } from './types'
 
@@ -13,6 +13,11 @@ describe('cartSlice', () => {
     type: '1',
     size: 1,
     count: 1,
+  }
+
+  const state = {
+    items: [{ ...cartItem, count: 2 }],
+    totalPrice: 200,
   }
 
   it('should return default state when passed an empty action', () => {
@@ -35,6 +40,15 @@ describe('cartSlice', () => {
     const result = cart(initialState, action)
 
     expect(result.items[0]).toEqual(cartItem)
+  })
+
+  it('should decrement the count of the item with "minusItem" action', () => {
+    const action = { type: minusItem.type, payload: cartItem }
+
+    const result = cart(state, action)
+
+    expect(result.items[0].count).toEqual(1)
+    expect(result.items[0].price).toBe(100)
   })
 
   it('should clear items from cart with "clearItems" action', () => {
