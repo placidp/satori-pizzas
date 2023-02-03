@@ -1,8 +1,6 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
-import cartEmptyImg from '../../assets/img/empty-cart.png'
-
 import styles from './CartEmpty.module.scss'
 
 export const CartEmpty: FC = () => (
@@ -15,7 +13,6 @@ export const CartEmpty: FC = () => (
       <br />
       Для того, чтобы заказать пиццу, перейди на главную страницу.
     </p>
-    <img src={cartEmptyImg} alt='Empty cart' />
     <Link to='/' className={`button button--black ${styles.buttonBlack}`}>
       <span>Вернуться назад</span>
     </Link>

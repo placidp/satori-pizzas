@@ -1,11 +1,10 @@
 .container {
-  margin: 40px auto;
+  margin: 40px 20px auto;
   text-align: center;
 
   h2 {
     font-size: 36px;
     font-weight: 700;
-    margin-bottom: 20px;
 
     span {
       @media (max-width: 400px) {
@@ -20,6 +19,7 @@
     letter-spacing: 0.01em;
     color: #777777;
     padding: 5px 10px;
+    margin: 20px 0;
   }
 
   icon {
